@@ -23,7 +23,7 @@ public class SheetDto {
         //sheet.getActiveCells().forEach((coordinate, cell) -> activeCells.put(new CoordinateDto(coordinate), new CellDto(cell)));
         sheet.getActiveCells().forEach((coordinate, cell) -> activeCells.put(coordinate.toString(), new CellDto(cell)));
 
-        //activeCells.values().forEach(CellDto::setInfluenceOn);
+        activeCells.values().forEach(CellDto::setInfluenceOn);
         sheet.getRanges().forEach(range-> ranges.add(new RangeDto(range)));
     }
 
