@@ -382,7 +382,7 @@ public class AppController {
         rangesComponentController.uploadRanges(currentSheet.ranges());
         setEffectiveValuesPoolProperty(currentSheet, this.effectiveValuesPool);
         setNumericCoordinateList();
-
+        dynamicComponentController.init();
         setSheet(currentSheet);
         mostUpdatedVersionNumber = sheetDto.version();
         tempMostUpdatedVersionNumber = mostUpdatedVersionNumber;

@@ -184,16 +184,19 @@ public class DynamicAnalysisController {
 
     private void resetRow(ComboBox<String> comboBox, Spinner<Double> spinnerStep, Spinner<Integer> spinnerMin, Slider slider, Spinner<Integer> spinnerMax) {
         String coordinate = comboBox.getSelectionModel().selectedItemProperty().get();
+
         if (coordinate != null) {
            // Double value = mainAppController.getIntValueAt(coordinate);
             Double value = 50.0;
 
             spinnerStep.getValueFactory().setValue(1.0); // Reset step
-            spinnerMin.getValueFactory().setValue((int)value.intValue() * (-2) + value.intValue());   // Reset min
-            spinnerMax.getValueFactory().setValue((int)value.intValue() * (-2) + value.intValue()); // Reset max
+            //spinnerMin.getValueFactory().setValue((int)value.intValue() * (-2) + value.intValue());   // Reset min
+            spinnerMin.getValueFactory().setValue(150);   // Reset min
+            //spinnerMax.getValueFactory().setValue((int)value.intValue() * (2) + value.intValue()); // Reset max
+            spinnerMax.getValueFactory().setValue(-50); // Reset max
 
 
-            //slider.valueProperty().setValue(value);                      // Reset slider to middle
+            slider.valueProperty().setValue(value);                      // Reset slider to middle
         }
     }
 
