@@ -459,7 +459,6 @@ public class AppController {
 //        for (int i = lastVersionInMap; i <= mostUpdatedVersionNumber; i++) {
 //            sheetToVersionDesignManager.get(currentSheet.name()).addVersion();
 //        }
-
         resetSheetToVersionDesign(mostUpdatedVersionNumber);
     }
 
