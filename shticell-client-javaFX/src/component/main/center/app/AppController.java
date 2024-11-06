@@ -390,6 +390,7 @@ public class AppController {
 
         rangesComponentController.uploadRanges(currentSheet.ranges());
         setEffectiveValuesPoolProperty(currentSheet, this.effectiveValuesPool);
+        numericCoordinateObservableList.clear();
         setNumericCoordinateList();
         setSheet(currentSheet);
 
@@ -503,6 +504,7 @@ public class AppController {
 
         isEditorProperty.set(currentSheet.version() == tempMostUpdatedVersionNumber);
         setEffectiveValuesPoolProperty(currentSheet, effectiveValuesPool);
+        numericCoordinateObservableList.clear();
         setNumericCoordinateList();
         resetSheetToVersionDesign(currentSheet.version());
     }
@@ -510,6 +512,8 @@ public class AppController {
     public void updateCellRunLater(SheetDto sheetDto) {
         if (sheetDto.version() != currentSheet.version()) {
             currentSheet = sheetDto;
+            numericCoordinateObservableList.clear();
+            setNumericCoordinateList();
             mostUpdatedVersionNumber = sheetDto.version();
             setEffectiveValuesPoolProperty(currentSheet, effectiveValuesPool);
         }
@@ -736,6 +740,7 @@ public class AppController {
 
     public void removeDynamicSheet() {
         isDynamicSheetActiveProperty.set(false);
+        headerComponentController.getSplitMenuButtonSelectVersion().setDisable(false);
         currentSheet = editableSheet;
         setEffectiveValuesPoolProperty(currentSheet, effectiveValuesPool);
     }
@@ -769,6 +774,7 @@ public class AppController {
                     Gson gson = new GsonBuilder().registerTypeAdapter(CellDto.class, new CellDtoDeserializer()).create();
                     editableSheet = gson.fromJson(jsonResponse, SheetDto.class);
                     isDynamicSheetActiveProperty.set(true);
+                    headerComponentController.getSplitMenuButtonSelectVersion().setDisable(true);
                     latch.countDown(); // Release latch after successful completion
                     Platform.runLater(() -> setEffectiveValuesPoolProperty(editableSheet, effectiveValuesPool));
                 }
